@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <title>{% block title %}Главная{% endblock %}</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Alimov ToDo</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Главное  <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list' %}">Заметки</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sortdata' %}">Сортировка по приоритету</a>
+        </li> 
+    <ul/>
+        
+    </div>
+  </nav>
+  {% block content %}
+  <div class="row">
+
+  </div>
+  <div class="row">
+    <div class="col-md-6" style="margin: 0 auto;">
+      <form action="{% url 'submit' %}">
+        <div class="form-group">
+          <label for="title">Название</label>
+          <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+          <label for="description">Описание</label>
+          <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="priority">Приоритет</label>
+          <input type="number" class="form-control" id="priority" name="priority">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin: 0 auto;display: block;">Опубликовать</button>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
+
+</body>
+
+</html>

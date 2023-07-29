@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block title %}Заметки{% endblock %}
+{% block content %}
+{% for todo in alltodos %}
+<div class="row">
+    <div class="col-md-6" style="margin:0 auto;">
+        <div class="card container-fluid" style="margin-top: 1rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{todo.title}} {{todo.priority}}</h5>
+              <p class="card-text">{{todo.description}}</p>
+              <p class="card-text">{{todo.created_at}}</p>
+              
+              <a href="/delete/{{todo.id}}" class="btn btn-danger">Удалить</a>
+              <a href="/edit/{{todo.id}}" class="btn btn-warning">Изменить</a>
+
+
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
