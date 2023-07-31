@@ -36,7 +36,7 @@ def sortdata(request):
     mydictionary ={
         "alltodos" : Todo.objects.all().order_by('priority')
     }
-    return render(request,'list.html',context=mydictionary)
+    return render(request,'sort.html',context=mydictionary)
 
 def searchdata(request):
     q = request.GET['query']
@@ -71,3 +71,10 @@ def update(request,id):
     return render(request,'list.html',context=mydictionary)
 
     # register
+
+
+
+# datee
+def my_view(request):
+    my_date = "2023-07-29" 
+    return render(request, 'list.html', {'my_date': my_date})

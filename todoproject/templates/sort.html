@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block title %}Сортировка по приоритету {% endblock %}
+{% block content %}
+{% for todo in alltodos %}
+<div class="row">
+    <div class="col-md-6" style="margin:0 auto;">
+        <div class="card container-fluid" style="margin-top: 1rem;">
+            <div class="card-body">
+              <h2 class="card-title">Приоритет: {{todo.priority}}</h2>
+              <h5 class="card-title">Название: {{todo.title}}</h5>
+              <p class="card-text">Описание: {{todo.description}}</p>
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

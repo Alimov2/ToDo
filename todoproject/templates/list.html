@@ -6,8 +6,10 @@
     <div class="col-md-6" style="margin:0 auto;">
         <div class="card container-fluid" style="margin-top: 1rem;">
             <div class="card-body">
+              <h5 class="card-title"> {{todo.priority}}</h5>
               <h5 class="card-title">{{todo.title}} {{todo.priority}}</h5>
               <p class="card-text">{{todo.description}}</p>
+              {% comment %}!! здесь сменииить на my_date_field и не получилось вывести там ошибка{% endcomment %}
               <p class="card-text">{{todo.created_at}}</p>
               
               <a href="/delete/{{todo.id}}" class="btn btn-danger">Удалить</a>
