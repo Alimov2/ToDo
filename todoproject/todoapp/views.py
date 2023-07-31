@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from django.http import HttpResponse,JsonResponse
+from .forms import RegistrationForm
+from .models import UserProfile
+from .forms import RegistrationForm, LoginForm
+from django.contrib.auth import authenticate, login
 
 
 # Create your views here.
@@ -70,11 +74,40 @@ def update(request,id):
     }
     return render(request,'list.html',context=mydictionary)
 
-    # register
-
-
-
 # datee
 def my_view(request):
     my_date = "2023-07-29" 
     return render(request, 'list.html', {'my_date': my_date})
+
+    # register
+
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login') 
+    else:
+        form = RegistrationForm()
+    return render(request, 'register.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('index')  
+            else:
+                pass
+    else:
+        form = LoginForm()
+
+    return render(request, 'login.html', {'form': form})

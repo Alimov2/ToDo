@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 from django import forms
+from django.contrib.auth.models import AbstractUser
 
 class Todo(models.Model):
     title = models.CharField(max_length=255)
@@ -13,4 +14,10 @@ class Todo(models.Model):
 
 # register
 
+class UserProfile(AbstractUser):
+    password_confirmation = models.CharField(max_length=128)
+    groups = models.ManyToManyField('auth.Group', blank=True, related_name='todoapp_userprofile')
+    user_permissions = models.ManyToManyField('auth.Permission', blank=True, related_name='todoapp_userprofile')
 
+    def __str__(self):
+        return self.username

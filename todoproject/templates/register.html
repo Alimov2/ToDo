@@ -1,0 +1,37 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Регистрация</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+                            {% if form.errors %}
+                                <div class="alert alert-danger mt-3" role="alert">
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            {{ field }}: {{ error }}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </form>
+                        <p class="text-center mt-3">Уже зарегистрированы? <a href="{% url 'login' %}">Войдите</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
